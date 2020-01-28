@@ -1,6 +1,6 @@
 <?php
 include "connBD.php";
-
+echo $conn->error;
 ?>
 
 
@@ -47,6 +47,10 @@ include "connBD.php";
 	</form>
 </body>
 </html>
+
+
+
+
 <?php
 if (isset ($_POST["name"]) && isset ($_POST["difficulty"]) && isset ($_POST["distance"])
     && isset ($_POST["duration"]) && isset ($_POST["height_difference"]))
@@ -54,34 +58,26 @@ if (isset ($_POST["name"]) && isset ($_POST["difficulty"]) && isset ($_POST["dis
         $name= $_POST["name"];
         $difficulty = $_POST["difficulty"];
         $distance= $_POST["distance"];
-        $duration= _POST["duration"];
+        $duration= $_POST["duration"];
         $height_diff= $_POST["height_difference"];
 
-
-        $stmt = $conn->prepare("INSERT INTO `hiking`(`id`, `name`, `difficulty`, `distance`, `duration`, `height_difference`)
-                VALUES (NULL,$name,$difficulty,$distance,$duration,$height_diff)");
-
-        $sql = "INSERT INTO `hiking`(`id`, `name`, `difficulty`, `distance`, `duration`, `height_difference`)
-                VALUES (NULL,$name,$difficulty,$distance,$duration,$height_diff)";
-        $result = $conn->query($sql);
-        $conn->error;
-    }
-
-$stmt = $conn->prepare("INSERT INTO eleves (nom) VALUES (?)");
-$stmt->bind_param("s",$nom);
-
-$nom = "Jacques";
-$stmt->execute();
-
-$nom = "Jacques1";
-$stmt->execute();
-
-$nom = "Jacques2";
-$stmt->execute();
-
-$stmt->close();
+        $stmt = $conn->prepare("INSERT INTO hiking(name, difficulty, distance, duration, height_difference)
+                VALUES (?,?,?,?,?)");
+        $stmt->bind_param("ssiii", $name,$difficulty, $distance, $duration, $height_diff);
 
 
+        if ($stmt->execute())
+        {
+            echo "<br><span> Votre randonnée a bien été ajoutée </span>";
+        }
+        echo $conn->error;
+        $stmt->close();
+
+
+  }
+else {
+   echo "<br>Remplissez tous les champs, s'il-vous-plait<br>";
+}
 
 
 

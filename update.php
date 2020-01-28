@@ -1,3 +1,9 @@
+<?php
+
+include "connBD.php";
+echo $conn->error
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,7 +43,7 @@
 			<label for="height_difference">Dénivelé</label>
 			<input type="text" name="height_difference" value="">
 		</div>
-		<button type="button" name="button">Envoyer</button>
+		<button type="submit" name="button">Envoyer</button>
 	</form>
 </body>
 </html>
