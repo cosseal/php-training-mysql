@@ -1,3 +1,8 @@
+<?php
+
+include "connBD.php";
+?>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -8,7 +13,32 @@
   <body>
     <h1>Liste des randonnées</h1>
     <table>
-      <!-- Afficher la liste des randonnées -->
+        <tr>
+            <th>Randonnées</th>
+            <th>Difficulté</th>
+            <th>Distance</th>
+            <th>Durée</th>
+            <th>Dénivelé</th>
+        </tr>
+
+      <?php
+      $rando = "SELECT * FROM hiking WHERE 1";
+      $result = $conn->query($rando);
+
+      While($tab = $result->fetch_assoc()) {
+          $duration = date_create($tab["duration"]);
+          echo utf8_encode("<tr>
+                    <td>".$tab["name"]."</td>
+                    <td>".ucfirst($tab["difficulty"])."</td>
+                    <td>".$tab["distance"]." km </td>
+                    <td>".date_format($duration,'G:i')."</td>
+                    <td>".$tab["height_difference"]." m </td>
+                </tr>");
+
+      }
+
+
+      ?>
     </table>
   </body>
 </html>

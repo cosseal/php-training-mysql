@@ -1,3 +1,9 @@
+<?php
+include "connBD.php";
+
+?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,11 +12,11 @@
 	<link rel="stylesheet" href="css/basics.css" media="screen" title="no title" charset="utf-8">
 </head>
 <body>
-	<a href="/php-pdo/read.php">Liste des données</a>
+	<a href="/read.php">Liste des données</a>
 	<h1>Ajouter</h1>
 	<form action="" method="post">
 		<div>
-			<label for="name">Name</label>
+			<label for="name">Nom</label>
 			<input type="text" name="name" value="">
 		</div>
 
@@ -41,3 +47,43 @@
 	</form>
 </body>
 </html>
+<?php
+if (isset ($_POST["name"]) && isset ($_POST["difficulty"]) && isset ($_POST["distance"])
+    && isset ($_POST["duration"]) && isset ($_POST["height_difference"]))
+    {
+        $name= $_POST["name"];
+        $difficulty = $_POST["difficulty"];
+        $distance= $_POST["distance"];
+        $duration= _POST["duration"];
+        $height_diff= $_POST["height_difference"];
+
+
+        $stmt = $conn->prepare("INSERT INTO `hiking`(`id`, `name`, `difficulty`, `distance`, `duration`, `height_difference`)
+                VALUES (NULL,$name,$difficulty,$distance,$duration,$height_diff)");
+
+        $sql = "INSERT INTO `hiking`(`id`, `name`, `difficulty`, `distance`, `duration`, `height_difference`)
+                VALUES (NULL,$name,$difficulty,$distance,$duration,$height_diff)";
+        $result = $conn->query($sql);
+        $conn->error;
+    }
+
+$stmt = $conn->prepare("INSERT INTO eleves (nom) VALUES (?)");
+$stmt->bind_param("s",$nom);
+
+$nom = "Jacques";
+$stmt->execute();
+
+$nom = "Jacques1";
+$stmt->execute();
+
+$nom = "Jacques2";
+$stmt->execute();
+
+$stmt->close();
+
+
+
+
+
+
+?>
