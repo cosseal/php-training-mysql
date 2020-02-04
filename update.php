@@ -1,6 +1,7 @@
 <?php
-
 include "connBD.php";
+
+
 echo $conn->error
 ?>
 
@@ -12,7 +13,7 @@ echo $conn->error
 	<link rel="stylesheet" href="css/basics.css" media="screen" title="no title" charset="utf-8">
 </head>
 <body>
-	<a href="/php-pdo/read.php">Liste des données</a>
+	<a href="read.php">Liste des données</a>
 	<h1>Ajouter</h1>
 	<form action="" method="post">
 		<div>
@@ -47,3 +48,17 @@ echo $conn->error
 	</form>
 </body>
 </html>
+
+<?php
+$index = $_GET["index"];
+$input = $_POST["name"];
+
+//refaire une requête pour remplir les champs prévus en fonction de l'id
+    //et refaire une requête d'update quand on soumet le formulaire
+
+
+
+
+
+
+

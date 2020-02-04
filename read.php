@@ -1,6 +1,6 @@
 <?php
-
 include "connBD.php";
+
 ?>
 
 <!DOCTYPE html>
@@ -27,15 +27,19 @@ include "connBD.php";
 
       While($tab = $result->fetch_assoc()) {
           $duration = date_create($tab["duration"]);
-          echo utf8_encode("<tr>
-                    <td>".$tab["name"]."</td>
+           $id_rando = $tab["id"];
+                  echo utf8_encode("<tr>
+                    <td><a href='update.php?index=$id_rando'>".$tab["name"]."</a></td>
                     <td>".ucfirst($tab["difficulty"])."</td>
                     <td>".$tab["distance"]." km </td>
                     <td>".date_format($duration,'G:i')."</td>
                     <td>".$tab["height_difference"]." m </td>
                 </tr>");
 
+
       }
+
+
 
 
       ?>

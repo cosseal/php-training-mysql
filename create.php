@@ -64,7 +64,7 @@ if (isset ($_POST["name"]) && isset ($_POST["difficulty"]) && isset ($_POST["dis
         $stmt = $conn->prepare("INSERT INTO hiking(name, difficulty, distance, duration, height_difference)
                 VALUES (?,?,?,?,?)");
         $stmt->bind_param("ssiii", $name,$difficulty, $distance, $duration, $height_diff);
-
+            //uft8encode();
 
         if ($stmt->execute())
         {
