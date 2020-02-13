@@ -1,8 +1,19 @@
 <?php
 include "connBD.php";
+echo $conn->error;
+
+$index = $_GET["index"];
+
+$select= "SELECT * FROM hiking WHERE 1";
+$result = $conn->query($select);
+while($tab=$result->fetch_assoc()) {
+    $duration = date_create($tab["duration"]);
 
 
-echo $conn->error
+    //refaire une requête pour remplir les champs prévus en fonction de l'id
+    //et refaire une requête d'update quand on soumet le formulaire
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -31,10 +42,9 @@ echo $conn->error
 				<option value="très difficile">Très difficile</option>
 			</select>
 		</div>
-		
 		<div>
 			<label for="distance">Distance</label>
-			<input type="text" name="distance" value="">
+			<input type="text" name="distance" <?php echo'value="'.$tab[$index]['distance'].'"'; ?>">
 		</div>
 		<div>
 			<label for="duration">Durée</label>
@@ -49,12 +59,12 @@ echo $conn->error
 </body>
 </html>
 
-<?php
-$index = $_GET["index"];
-$input = $_POST["name"];
 
-//refaire une requête pour remplir les champs prévus en fonction de l'id
-    //et refaire une requête d'update quand on soumet le formulaire
+
+
+
+
+
 
 
 

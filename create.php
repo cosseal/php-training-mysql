@@ -1,6 +1,13 @@
 <?php
 include "connBD.php";
-echo $conn->error;
+
+require_once "connexion.php";
+connexion();
+authentification();
+
+if(authentification()){
+    ?><a href="logout.php?off">Se déconnecter</a><?php
+}
 ?>
 
 

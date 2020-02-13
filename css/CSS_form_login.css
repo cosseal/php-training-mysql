@@ -1,0 +1,27 @@
+* {
+    box-sizing: border-box;
+}
+
+body, html {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#container{
+    width: 400px;
+    margin: 0 auto;
+    margin-top: 10%;
+}
+form{
+    width: 100%;
+    padding: 30%;
+    border: 1px solid #f1f1f1;
+    background: darkcyan;
+}
+input{
+    margin-top: 10%;
+    margin-bottom: 5%;
+
+}
+
